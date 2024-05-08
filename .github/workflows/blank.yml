@@ -43,7 +43,8 @@ jobs:
         run: kubectl get pods -A
       - name: kubectl deployment
         run: kubectl create deployment kubernetes-bootcamp --image=nginx
-      
+      - name: kubectl
+        run: kubectl get pods -A
       - name: Test service URLs
         run: |
           minikube service list
