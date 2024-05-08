@@ -40,17 +40,10 @@ jobs:
         uses: medyagh/setup-minikube@latest
       # now you can run kubectl to see the pods in the cluster
       - name: kubectl
-        run: kubectl get pods -A 
-      - name: Build image
-        run: |
-          export SHELL=/bin/bash
-          eval $(minikube -p minikube docker-env)
-          make build-image
-          echo -n "verifying images:"
-          docker images
-      - name: Deploy to minikube
-        run: |
-          kubectl apply -f deploy/deploy-minikube.yaml
+        run: kubectl get pods -A
+      - name: kubectl deployment
+        run: kubectl create deployment kubernetes-bootcamp --image=nginx
+      
       - name: Test service URLs
         run: |
           minikube service list
